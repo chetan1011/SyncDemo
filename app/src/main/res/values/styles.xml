@@ -32,7 +32,7 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingEnd">@dimen/dimen_10</item>
         <item name="android:paddingStart">@dimen/dimen_10</item>
-        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:textColor">@color/colorGrayLight</item>
         <item name="android:textSize">@dimen/font_16</item>
     </style>
 

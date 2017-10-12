@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Common Structure</string>
+
+
+    <!-- All types of messages which are shown to the User.-->
+
+    <string name="alert_message_error">Something went wrong please try after sometime.</string>
+    <string name="alert_network_error">Network error! Try after sometime.</string>
+    <string name="alert_no_data_message">No data available to show.</string>
+
+    <string name="click_here_to_refresh">Click here to refresh</string>
+    <string name="lbl_search_message">What are you looking for?</string>
+
+    <string name="share_intent_title">Choose your option.</string>
+</resources>

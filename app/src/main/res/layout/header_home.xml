@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorPrimary"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:gravity="center_vertical"
+        >
+
+        <ImageButton
+            android:id="@+id/header_ib_menu"
+            style="@style/ibHeader"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/ic_nav_slider"
+            />
+
+        <ImageButton
+            android:id="@+id/header_ib_cart"
+            style="@style/ibHeader"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_nav_cart"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/header_ib_menu"
+            android:layout_toStartOf="@+id/header_ib_cart"
+            android:background="@android:color/transparent"
+            android:contentDescription="@null"
+            android:src="@drawable/nav_logo"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/header_tv_search"
+        style="@style/tvHeaderSearch"
+        android:layout_marginBottom="@dimen/dimen_10"
+        android:layout_marginEnd="@dimen/dimen_10"
+        android:layout_marginStart="@dimen/dimen_10"
+        android:text="@string/lbl_search_message"/>
+
+
+</LinearLayout>

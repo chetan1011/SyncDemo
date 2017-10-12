@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_gray"
+                android:orientation="vertical">
+
+    <include
+        android:id="@+id/fragment_home_header"
+        layout="@layout/header_home"
+        />
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/fragment_home_sv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_home_header"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusableInTouchMode="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/fragment_home_vp_banner"
+                style="@style/vpBannerImages"
+                android:layout_height="@dimen/dimen_100"
+                />
+            <!--android:layout_height="?android:attr/actionBarSize"-->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/fragment_home_tbl_page_indicator"
+                style="@style/tlPageIndicator"
+                app:tabBackground="@drawable/bg_page_indicator_selector"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

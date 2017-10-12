@@ -12,4 +12,5 @@
     <string name="lbl_search_message">What are you looking for?</string>
 
     <string name="share_intent_title">Choose your option.</string>
+    <string name="title_home">Home</string>
 </resources>

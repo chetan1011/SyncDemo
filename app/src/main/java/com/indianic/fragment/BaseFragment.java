@@ -173,7 +173,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        Utils.hideSoftKeyBoard(getActivity(), v);
+        Utils.getInstance().hideSoftKeyBoard(getActivity(), v);
         /*
          * Logic to Prevent the Launch of the Fragment Twice if User makes
          * the Tap(Click) very Fast.

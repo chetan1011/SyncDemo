@@ -58,7 +58,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
             vpBanner.setAdapter(bannerAdapter);
             tblBannerIndicator.setVisibility(View.VISIBLE);
 
-            Utils.setViewHeight(getActivity(), vpBanner);
+            Utils.getInstance().setViewHeight(getActivity(), vpBanner);
 
             vpBanner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override

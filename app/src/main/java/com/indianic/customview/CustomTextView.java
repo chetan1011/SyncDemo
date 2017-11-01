@@ -7,6 +7,8 @@ import android.graphics.Typeface;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
+import com.indianic.R;
+
 
 /**
  * Purpose: This class set the font to textView according to attribute
@@ -15,7 +17,6 @@ import android.util.AttributeSet;
  * @version 1.0
  */
 public class CustomTextView extends AppCompatTextView {
-
     public CustomTextView(final Context mContext) {
         super(mContext);
     }

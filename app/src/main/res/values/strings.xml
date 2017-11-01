@@ -1,11 +1,27 @@
 <resources>
     <string name="app_name">Common Structure</string>
 
+    <!--Common Strings-->
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+    <string name="next">NEXT</string>
+    <string name="back">BACK</string>
+    <string name="submit">SUBMIT</string>
+    <string name="update">UPDATE</string>
+    <string name="settings">SETTINGS</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="share">Share</string>
 
     <!-- All types of messages which are shown to the User.-->
-
+    <!--Common Alert Msg-->
     <string name="alert_message_error">Something went wrong please try after sometime.</string>
     <string name="alert_network_error">Network error! Try after sometime.</string>
+    <string name="alert_some_error">Something went wrong, try again</string>
+    <string name="alert_no_connection">No internet connection</string>
+    <string name="alert_check_gps">Geolocation is OFF</string>
     <string name="alert_no_data_message">No data available to show.</string>
 
     <string name="click_here_to_refresh">Click here to refresh</string>

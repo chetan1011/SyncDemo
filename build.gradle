@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta7'
+        classpath 'com.android.tools.build:gradle:3.0.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -17,16 +17,23 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url 'https://maven.google.com'
+        }
     }
-    //THIS IS WHAT YOU ARE ADDING
-    project.ext {
-        buildToolsVersion = "26.0.2" //String
-        supportVersion = "26.1.0" //String
-        okHttpVersion = "3.7.0" //String
-        minSdkVersion = 19 //Integer
-        targetSdkVersion = 26
-        compileSdkVersion = 26
-    }
+}
+
+ext {
+    compileSdkVersion = 26 //Integer
+    buildToolsVersion = "26.0.1" //String
+
+    minSdkVersion = 19
+    targetSdkVersion = 26
+
+    supportLibraryVersion = '27.0.0'
+    googlePlayServicesVersion = '10.2.1'
+    okhttp3 = '3.8.1'
+    retrofit2 = '2.3.0'
 }
 
 

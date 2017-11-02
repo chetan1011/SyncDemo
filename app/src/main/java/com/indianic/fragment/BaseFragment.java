@@ -69,9 +69,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        pbProgress = (ProgressBar) view.findViewById(R.id.layout_pb_progress);
+        pbProgress = view.findViewById(R.id.layout_pb_progress);
 
-        llEmptyView = (LinearLayout) view.findViewById(R.id.layout_empty_view_ll_main);
+        llEmptyView = view.findViewById(R.id.layout_empty_view_ll_main);
 
         if (llEmptyView != null) {
             llEmptyView.setVisibility(View.GONE);
@@ -81,7 +81,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         /*
       Drawer menu image button
      */
-        final ImageButton ibMenu = (ImageButton) view.findViewById(R.id.header_ib_menu);
+        final ImageButton ibMenu = view.findViewById(R.id.header_ib_menu);
         /*final ImageView ibBack = (ImageView) view.findViewById(R.id.header_iv_back);
         final ImageView ivSearch = (ImageView) view.findViewById(R.id.header_iv_search);*/
 
@@ -116,7 +116,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      */
     protected void setEmptyViewMessage(final String message) {
         if (llEmptyView != null && !TextUtils.isEmpty(message)) {
-            final TextView tvEmpty = (TextView) llEmptyView.findViewById(R.id.layout_empty_view_tv_message);
+            final TextView tvEmpty = llEmptyView.findViewById(R.id.layout_empty_view_tv_message);
             if (tvEmpty != null) {
                 tvEmpty.setText(message);
             }
@@ -173,7 +173,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        Utils.hideSoftKeyBoard(getActivity(), v);
+        Utils.getInstance().hideSoftKeyBoard(getActivity(), v);
         /*
          * Logic to Prevent the Launch of the Fragment Twice if User makes
          * the Tap(Click) very Fast.

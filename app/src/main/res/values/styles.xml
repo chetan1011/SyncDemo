@@ -65,7 +65,7 @@
     <style name="StyleTvDialogAction">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <!--<item name="android:fontFamily">@font/font_gotham_medium</item>-->
+        <item name="android:fontFamily">@font/font_gotham_book</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">@dimen/_10sdp</item>
         <item name="android:textAllCaps">true</item>

@@ -36,8 +36,8 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     @Override
     protected void initializeComponent(View view) {
 
-        vpBanner = (ViewPager) view.findViewById(R.id.fragment_home_vp_banner);
-        tblBannerIndicator = (TabLayout) view.findViewById(R.id.fragment_home_tbl_page_indicator);
+        vpBanner = view.findViewById(R.id.fragment_home_vp_banner);
+        tblBannerIndicator = view.findViewById(R.id.fragment_home_tbl_page_indicator);
         tblBannerIndicator.setupWithViewPager(vpBanner);
 
         setDummyData();
@@ -58,7 +58,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
             vpBanner.setAdapter(bannerAdapter);
             tblBannerIndicator.setVisibility(View.VISIBLE);
 
-            Utils.setViewHeight(getActivity(), vpBanner);
+            Utils.getInstance().setViewHeight(getActivity(), vpBanner);
 
             vpBanner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override

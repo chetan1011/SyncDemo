@@ -13,7 +13,7 @@
 
         <ImageButton
             android:id="@+id/header_ib_menu"
-            style="@style/ibHeader"
+            style="@style/Button.Header"
             android:layout_alignParentStart="true"
             android:contentDescription="@null"
             android:src="@drawable/ic_nav_slider"
@@ -21,7 +21,7 @@
 
         <ImageButton
             android:id="@+id/header_ib_cart"
-            style="@style/ibHeader"
+            style="@style/Button.Header"
             android:layout_alignParentEnd="true"
             android:contentDescription="@null"
             android:src="@drawable/ic_nav_cart"
@@ -39,13 +39,13 @@
     </RelativeLayout>
 
 
-    <TextView
+    <EditText
         android:id="@+id/header_tv_search"
-        style="@style/tvHeaderSearch"
+        style="@style/EditText.HeaderSearch"
         android:layout_marginBottom="@dimen/dimen_10"
         android:layout_marginEnd="@dimen/dimen_10"
         android:layout_marginStart="@dimen/dimen_10"
-        android:text="@string/lbl_search_message"/>
+        android:text="@string/search_message"/>
 
 
 </LinearLayout>

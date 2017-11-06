@@ -24,7 +24,7 @@
         <activity
             android:name="com.indianic.activity.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/StyleStatusBarTransparent"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 
         <meta-data

@@ -71,7 +71,7 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        Utils.hideSoftKeyBoard(context, v);
+        Utils.getInstance().hideSoftKeyBoard(context, v);
         /*
          * Logic to Prevent the Launch of the Fragment Twice if User makes
          * the Tap(Click) very Fast.

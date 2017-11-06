@@ -27,13 +27,13 @@
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/fragment_home_vp_banner"
-                style="@style/vpBannerImages"
+                style="@style/BannerImages"
                 android:layout_height="@dimen/dimen_100"
                 />
             <!--android:layout_height="?android:attr/actionBarSize"-->
             <android.support.design.widget.TabLayout
                 android:id="@+id/fragment_home_tbl_page_indicator"
-                style="@style/tlPageIndicator"
+                style="@style/TabLayout.PageIndicator"
                 app:tabBackground="@drawable/bg_page_indicator_selector"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

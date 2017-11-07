@@ -1,4 +1,4 @@
-package com.indianic.customview;
+package com.indianic.util.listener;
 
 
 public interface RecyclerViewItemClickListener {

@@ -14,13 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.indianic.customview.OnClickListenerWrapper;
-import com.indianic.util.impl.DataReloader;
 import com.indianic.R;
 import com.indianic.activity.BaseActivity;
 import com.indianic.activity.HomeActivity;
 import com.indianic.util.Constants;
 import com.indianic.util.Utils;
+import com.indianic.util.listener.DataReloader;
 
 
 /**
@@ -75,11 +74,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         llEmptyView = view.findViewById(R.id.layout_empty_view_ll_main);
 
 
-
         if (llEmptyView != null) {
             llEmptyView.setVisibility(View.GONE);
             llEmptyView.setOnClickListener(this);
-            llEmptyView.setOnClickListener(new OnClickListenerWrapper(this));
+            llEmptyView.setOnClickListener(this);
         }
 
         /*

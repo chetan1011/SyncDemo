@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,66 +31,16 @@ import com.indianic.R;
  */
 public class Utils {
 
-
-    /*
-     * Checks the Network availability.
-     *
-     * @return true if internet available, false otherwise
-     */
-//    public boolean isNetworkAvailable(Context context) {
-//        if (context != null) {
-//            final ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-//
-//            if (connectivityManager != null) {
-//                final NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-//                if (activeNetwork != null) {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-//    }
-
     /**
      * Checks the Network availability.
      *
      * @return true if internet available, false otherwise
      */
     public static boolean isNetworkAvailable(Context context) {
-        if (context != null) {
-            final ConnectivityManager mConnectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo activeNetwork = cm != null ? cm.getActiveNetworkInfo() : null;
 
-            if (mConnectivityManager != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    final Network[] allNetworks = mConnectivityManager.getAllNetworks();
-
-                    for (Network network : allNetworks) {
-                        final NetworkInfo networkInfo = mConnectivityManager.getNetworkInfo(network);
-                        if (networkInfo != null && networkInfo.isConnected()) {
-                            return true;
-                        }
-                    }
-
-                } else {
-                    boolean wifiNetworkConnected = false;
-                    boolean mobileNetworkConnected = false;
-
-                    final NetworkInfo mobileInfo = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-                    final NetworkInfo wifiInfo = mConnectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-                    if (mobileInfo != null) {
-                        mobileNetworkConnected = mobileInfo.isConnected();
-                    }
-
-                    if (wifiInfo != null) {
-                        wifiNetworkConnected = wifiInfo.isConnected();
-                    }
-
-                    return (mobileNetworkConnected || wifiNetworkConnected);
-                }
-            }
-        }
-        return false;
+        return (activeNetwork != null && activeNetwork.isConnectedOrConnecting());
     }
 
     /**
@@ -114,24 +63,24 @@ public class Utils {
             }
 
             if (showMessage) {
-                final AlertDialog.Builder mDialog = new AlertDialog.Builder(activity);
-                mDialog.setTitle(activity.getString(R.string.app_name));
-                mDialog.setCancelable(false);
-                mDialog.setMessage(activity.getString(R.string.alert_check_gps));
+                final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
+                dialogBuilder.setTitle(activity.getString(R.string.app_name));
+                dialogBuilder.setCancelable(false);
+                dialogBuilder.setMessage(activity.getString(R.string.alert_check_gps));
 
-                mDialog.setPositiveButton(activity.getString(R.string.settings), new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface mDialog, int id) {
-                        mDialog.dismiss();
+                dialogBuilder.setPositiveButton(activity.getString(R.string.settings), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
                         activity.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 });
 
-                mDialog.setNegativeButton(activity.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                dialogBuilder.setNegativeButton(activity.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface mDialog, int id) {
                         mDialog.dismiss();
                     }
                 });
-                mDialog.show();
+                dialogBuilder.show();
 
                 return false;
             }

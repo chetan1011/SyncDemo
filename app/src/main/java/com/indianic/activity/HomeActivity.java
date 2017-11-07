@@ -1,6 +1,7 @@
 package com.indianic.activity;
 
 
+import android.os.AsyncTask;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -23,7 +24,7 @@ public class HomeActivity extends BaseActivity implements DrawerLayout.DrawerLis
 
     @Override
     protected void initializeComponents() {
-        replaceFragment(R.id.activity_home_fl_container, getFragmentManager(), new HomeFragment(), false, false);
+        replaceFragment(R.id.activity_home_flContainer, getFragmentManager(), new HomeFragment(), false, false);
 
         drawerLayout = findViewById(R.id.activity_home_drawer_layout);
         drawerLayout.addDrawerListener(this);

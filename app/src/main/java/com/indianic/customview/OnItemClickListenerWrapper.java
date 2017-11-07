@@ -4,21 +4,22 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 
+import com.indianic.util.Constants;
+
 public class OnItemClickListenerWrapper implements AdapterView.OnItemClickListener {
-    private static final long DEFAULT_MIN_INTERVAL = 500;
-    private final AdapterView.OnItemClickListener mListener;
-    private long mLastClickTime = 0;
+    private final AdapterView.OnItemClickListener itemClickListener;
+    private long lastClickTime = 0;
 
     public OnItemClickListenerWrapper(AdapterView.OnItemClickListener listener) {
-        mListener = listener;
+        itemClickListener = listener;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         long currentTime = AnimationUtils.currentAnimationTimeMillis();
-        if (currentTime - mLastClickTime > DEFAULT_MIN_INTERVAL) {
-            mListener.onItemClick(parent, view, position, id);
-            mLastClickTime = currentTime;
+        if (currentTime - lastClickTime > Constants.MAX_CLICK_INTERVAL) {
+            itemClickListener.onItemClick(parent, view, position, id);
+            lastClickTime = currentTime;
         }
     }
 }

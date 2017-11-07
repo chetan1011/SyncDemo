@@ -120,4 +120,50 @@
     <dimen name="dimen_400dp">@dimen/_400sdp</dimen>
     <dimen name="dimen_500dp">@dimen/_500sdp</dimen>
     <dimen name="dimen_600dp">@dimen/_600sdp</dimen>
+
+
+    <!--FONT-->
+    <dimen name="font_10sp">@dimen/_10ssp</dimen>
+    <dimen name="font_11sp">@dimen/_11ssp</dimen>
+    <dimen name="font_12sp">@dimen/_12ssp</dimen>
+    <dimen name="font_13sp">@dimen/_13ssp</dimen>
+    <dimen name="font_14sp">@dimen/_14ssp</dimen>
+    <dimen name="font_15sp">@dimen/_15ssp</dimen>
+    <dimen name="font_16sp">@dimen/_16ssp</dimen>
+    <dimen name="font_17sp">@dimen/_17ssp</dimen>
+    <dimen name="font_18sp">@dimen/_18ssp</dimen>
+    <dimen name="font_19sp">@dimen/_19ssp</dimen>
+    <dimen name="font_20sp">@dimen/_20ssp</dimen>
+    <dimen name="font_21sp">@dimen/_21ssp</dimen>
+    <dimen name="font_22sp">@dimen/_22ssp</dimen>
+    <dimen name="font_23sp">@dimen/_23ssp</dimen>
+    <dimen name="font_24sp">@dimen/_24ssp</dimen>
+    <dimen name="font_25sp">@dimen/_25ssp</dimen>
+    <dimen name="font_26sp">@dimen/_26ssp</dimen>
+    <dimen name="font_27sp">@dimen/_27ssp</dimen>
+    <dimen name="font_28sp">@dimen/_28ssp</dimen>
+    <dimen name="font_29sp">@dimen/_29ssp</dimen>
+    <dimen name="font_30sp">@dimen/_30ssp</dimen>
+    <dimen name="font_31sp">@dimen/_31ssp</dimen>
+    <dimen name="font_32sp">@dimen/_32ssp</dimen>
+    <dimen name="font_33sp">@dimen/_33ssp</dimen>
+    <dimen name="font_34sp">@dimen/_34ssp</dimen>
+    <dimen name="font_35sp">@dimen/_35ssp</dimen>
+    <dimen name="font_36sp">@dimen/_36ssp</dimen>
+    <dimen name="font_37sp">@dimen/_37ssp</dimen>
+    <dimen name="font_38sp">@dimen/_38ssp</dimen>
+    <dimen name="font_39sp">@dimen/_39ssp</dimen>
+    <dimen name="font_40sp">@dimen/_40ssp</dimen>
+    <dimen name="font_41sp">@dimen/_41ssp</dimen>
+    <dimen name="font_42sp">@dimen/_42ssp</dimen>
+    <dimen name="font_43sp">@dimen/_43ssp</dimen>
+    <dimen name="font_44sp">@dimen/_44ssp</dimen>
+    <dimen name="font_45sp">@dimen/_45ssp</dimen>
+    <dimen name="font_46sp">@dimen/_46ssp</dimen>
+    <dimen name="font_47sp">@dimen/_47ssp</dimen>
+    <dimen name="font_48sp">@dimen/_48ssp</dimen>
+    <dimen name="font_49sp">@dimen/_49ssp</dimen>
+    <dimen name="font_50sp">@dimen/_50ssp</dimen>
+
+
 </resources>

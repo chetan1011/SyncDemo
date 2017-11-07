@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.indianic.customview.OnClickListenerWrapper;
 import com.indianic.util.impl.DataReloader;
 import com.indianic.R;
 import com.indianic.activity.BaseActivity;
@@ -69,19 +70,22 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        pbProgress = view.findViewById(R.id.layout_pb_progress);
+        pbProgress = view.findViewById(R.id.layout_pbProgress);
 
         llEmptyView = view.findViewById(R.id.layout_empty_view_ll_main);
+
+
 
         if (llEmptyView != null) {
             llEmptyView.setVisibility(View.GONE);
             llEmptyView.setOnClickListener(this);
+            llEmptyView.setOnClickListener(new OnClickListenerWrapper(this));
         }
 
         /*
       Drawer menu image button
      */
-        final ImageButton ibMenu = view.findViewById(R.id.header_ib_menu);
+        final ImageButton ibMenu = view.findViewById(R.id.header_ibMenu);
         /*final ImageView ibBack = (ImageView) view.findViewById(R.id.header_iv_back);
         final ImageView ivSearch = (ImageView) view.findViewById(R.id.header_iv_search);*/
 
@@ -116,7 +120,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      */
     protected void setEmptyViewMessage(final String message) {
         if (llEmptyView != null && !TextUtils.isEmpty(message)) {
-            final TextView tvEmpty = llEmptyView.findViewById(R.id.layout_empty_view_tv_message);
+            final TextView tvEmpty = llEmptyView.findViewById(R.id.layout_empty_view_tvMessage);
             if (tvEmpty != null) {
                 tvEmpty.setText(message);
             }
@@ -173,7 +177,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        Utils.getInstance().hideSoftKeyBoard(getActivity(), v);
+        Utils.hideSoftKeyBoard(getActivity(), v);
         /*
          * Logic to Prevent the Launch of the Fragment Twice if User makes
          * the Tap(Click) very Fast.
@@ -185,7 +189,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         lastClickedTime = SystemClock.elapsedRealtime();
 
         switch (v.getId()) {
-            case R.id.header_ib_menu:
+            case R.id.header_ibMenu:
 
                 openDrawer();
 

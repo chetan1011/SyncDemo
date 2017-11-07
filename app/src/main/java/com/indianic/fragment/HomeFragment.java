@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.indianic.R;
 import com.indianic.adapter.HomeBannerPagerAdapter;
@@ -36,8 +37,8 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     @Override
     protected void initializeComponent(View view) {
 
-        vpBanner = view.findViewById(R.id.fragment_home_vp_banner);
-        tblBannerIndicator = view.findViewById(R.id.fragment_home_tbl_page_indicator);
+        vpBanner = view.findViewById(R.id.fragment_home_vpBanner);
+        tblBannerIndicator = view.findViewById(R.id.fragment_home_tblPageIndicator);
         tblBannerIndicator.setupWithViewPager(vpBanner);
 
         setDummyData();
@@ -58,7 +59,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
             vpBanner.setAdapter(bannerAdapter);
             tblBannerIndicator.setVisibility(View.VISIBLE);
 
-            Utils.getInstance().setViewHeight(getActivity(), vpBanner);
+            setBannerHeight();
 
             vpBanner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
@@ -85,16 +86,17 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
                 bannerHandler = new Handler();
                 startAutoSwipeBanner();
             }
-//            setToolbarAlpha(0);
-
-//            svContent.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-//                @Override
-//                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//
-//                    setToolbarAlpha(scrollY);
-//                }
-//            });
         }
+    }
+
+    private void setBannerHeight() {
+        final ViewGroup.LayoutParams params = vpBanner.getLayoutParams();
+
+        final int deviceWidth = Utils.getDeviceMetrics(getActivity()).widthPixels;
+        final float BANNER_ASPECT_RATIO = 16f / 9; //16:9 aspect ratio
+        params.height = (int) (deviceWidth / BANNER_ASPECT_RATIO); //left, top, right, bottom
+
+        vpBanner.setLayoutParams(params);
     }
 
     /**

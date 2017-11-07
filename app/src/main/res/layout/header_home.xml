@@ -12,16 +12,16 @@
         >
 
         <ImageButton
-            android:id="@+id/header_ib_menu"
-            style="@style/Button.Header"
+            android:id="@+id/header_ibMenu"
+            style="@style/ImageButton.Header"
             android:layout_alignParentStart="true"
             android:contentDescription="@null"
             android:src="@drawable/ic_nav_slider"
             />
 
         <ImageButton
-            android:id="@+id/header_ib_cart"
-            style="@style/Button.Header"
+            android:id="@+id/header_ibCart"
+            style="@style/ImageButton.Header"
             android:layout_alignParentEnd="true"
             android:contentDescription="@null"
             android:src="@drawable/ic_nav_cart"
@@ -31,21 +31,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toEndOf="@+id/header_ib_menu"
-            android:layout_toStartOf="@+id/header_ib_cart"
+            android:layout_toEndOf="@+id/header_ibMenu"
+            android:layout_toStartOf="@+id/header_ibCart"
             android:text="@string/title_home"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/font_18"/>
+            android:textSize="@dimen/font_18sp"/>
     </RelativeLayout>
 
 
     <EditText
-        android:id="@+id/header_tv_search"
+        android:id="@+id/header_tvSearch"
         style="@style/EditText.HeaderSearch"
-        android:layout_marginBottom="@dimen/dimen_10"
-        android:layout_marginEnd="@dimen/dimen_10"
-        android:layout_marginStart="@dimen/dimen_10"
-        android:text="@string/search_message"/>
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        android:layout_marginStart="@dimen/dimen_10dp"
+        android:hint="@string/search_message"/>
 
 
 </LinearLayout>

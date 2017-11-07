@@ -13,7 +13,7 @@
         android:orientation="vertical">
         <!--This is Fragment container -->
         <FrameLayout
-            android:id="@+id/activity_home_fl_container"
+            android:id="@+id/activity_home_flContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/holo_blue_light"

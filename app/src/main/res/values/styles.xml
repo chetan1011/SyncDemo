@@ -9,7 +9,7 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.StatusBarTransparent">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
@@ -17,47 +17,49 @@
     <!--Common styles @Start-->
     <style name="TextStyle" parent="TextAppearance.AppCompat">
     </style>
+
     <style name="EditTextStyle" parent="Base.Widget.AppCompat.EditText">
     </style>
+
     <style name="ButtonStyle" parent="Widget.AppCompat.Button">
     </style>
     <!--Common styles @End-->
 
-    <style name="Button.Header" parent="ButtonStyle">
+    <style name="ImageButton.Header" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:contentDescription">@null</item>
-        <item name="android:paddingEnd">@dimen/dimen_10</item>
-        <item name="android:paddingStart">@dimen/dimen_10</item>
+        <item name="android:paddingEnd">@dimen/dimen_10dp</item>
+        <item name="android:paddingStart">@dimen/dimen_10dp</item>
     </style>
 
     <style name="EditText.HeaderSearch" parent="EditTextStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dimen_40</item>
+        <item name="android:layout_height">@dimen/dimen_40dp</item>
         <item name="android:background">@drawable/bg_white_corner</item>
-        <item name="android:drawablePadding">@dimen/dimen_10</item>
+        <item name="android:drawablePadding">@dimen/dimen_10dp</item>
         <item name="android:drawableStart">@drawable/ic_nav_search</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:paddingEnd">@dimen/dimen_10</item>
-        <item name="android:paddingStart">@dimen/dimen_10</item>
+        <item name="android:paddingEnd">@dimen/dimen_10dp</item>
+        <item name="android:paddingStart">@dimen/dimen_10dp</item>
         <item name="android:textColor">@color/colorGrayLight</item>
-        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:textSize">@dimen/font_16sp</item>
     </style>
 
     <style name="BannerImages">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dimen_200</item>
+        <item name="android:layout_height">@dimen/dimen_200dp</item>
         <item name="android:background">@android:color/white</item>
     </style>
 
-    <style name="TabLayout.PageIndicator" parent="Widget.Design.TabLayout">
+    <style name="TabPageIndicator" parent="Widget.Design.TabLayout">
         <item name="tabGravity">center</item>
         <item name="tabIndicatorHeight">0dp</item>
-        <item name="tabPaddingStart">@dimen/dimen_1</item>
+        <item name="tabPaddingStart">@dimen/dimen_1dp</item>
         <!--<item name="tabPaddingEnd">3dp</item>-->
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dimen_30</item>
+        <item name="android:layout_height">@dimen/dimen_30dp</item>
         <item name="android:background">@android:color/white</item>
     </style>
 

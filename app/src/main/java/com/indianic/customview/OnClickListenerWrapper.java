@@ -4,21 +4,22 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
 
+import com.indianic.util.Constants;
+
 public class OnClickListenerWrapper implements OnClickListener {
-    private static final long DEFAULT_MIN_INTERVAL = 700;
-    private final OnClickListener mListener;
-    private long mLastClickTime = 0;
+    private final OnClickListener onClickListener;
+    private long lastClickTime = 0;
 
     public OnClickListenerWrapper(OnClickListener listener) {
-        mListener = listener;
+        onClickListener = listener;
     }
 
     @Override
     public void onClick(View v) {
         long currentTime = AnimationUtils.currentAnimationTimeMillis();
-        if (currentTime - mLastClickTime > DEFAULT_MIN_INTERVAL) {
-            mListener.onClick(v);
-            mLastClickTime = currentTime;
+        if (currentTime - lastClickTime > Constants.MAX_CLICK_INTERVAL) {
+            onClickListener.onClick(v);
+            lastClickTime = currentTime;
         }
     }
 }

@@ -21,8 +21,8 @@ allprojects {
     //THIS IS WHAT YOU ARE ADDING
     project.ext {
         buildToolsVersion = "26.0.2" //String
-        supportVersion = "26.1.0" //String
-        okHttpVersion = "3.7.0" //String
+        supportLibraryVersion = "27.0.0" //String
+        sdp = "1.0.4" //String
         minSdkVersion = 19 //Integer
         targetSdkVersion = 26
         compileSdkVersion = 26

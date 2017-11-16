@@ -25,9 +25,6 @@ public class ImageLoader {
      * Loads the image from url into ImageView.
      */
     public static void loadImage(final Context context, final ImageView imageView, final String imageUrl, int placeHolderRes) {
-        if (placeHolderRes != R.drawable.placeholder_banner) {
-            placeHolderRes = R.drawable.placeholder_banner;
-        }
 
         Glide.with(context).asBitmap().load(imageUrl).apply(new RequestOptions().placeholder(placeHolderRes).error(placeHolderRes)).into(imageView);
     }

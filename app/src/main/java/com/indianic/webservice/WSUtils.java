@@ -20,7 +20,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Calls the the API.
+ * Provides the different methods to call the webservice.
  */
 public class WSUtils {
 

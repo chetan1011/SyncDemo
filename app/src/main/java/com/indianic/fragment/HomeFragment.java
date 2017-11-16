@@ -15,6 +15,9 @@ import com.indianic.util.Utils;
 
 import java.util.ArrayList;
 
+/**
+ * Sample Fragment for reference purpose only.
+ */
 public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter.OnItemClick {
 
     public static final int DELAY = 5000;// Milliseconds delay to swipe banner view pager automatically.
@@ -23,9 +26,9 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     private HomeDataModel homeDataModel;//Model containing all the Home screen Data.
     private TabLayout tblBannerIndicator;//Banner images pager page indicator
 
-    private HomeBannerPagerAdapter bannerAdapter;//Banner images page adapter
+    private HomeBannerPagerAdapter bannerAdapter;//Banner images pageradapter
 
-    private Handler bannerHandler;// Handler managing the banner pager auto swipe.
+    private Handler bannerHandler;// Handler, managing the banner pager auto swipe.
     private int currentBanner;//Represents the current visible banner position.
 
 

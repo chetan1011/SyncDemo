@@ -34,7 +34,7 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/fragment_home_tblPageIndicator"
                 style="@style/TabPageIndicator"
-                app:tabBackground="@drawable/bg_page_indicator_selector"/>
+                app:tabBackground="@drawable/drawable_bg_page_indicator_selector"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

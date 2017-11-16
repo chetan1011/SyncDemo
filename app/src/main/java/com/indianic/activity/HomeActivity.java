@@ -10,6 +10,9 @@ import android.view.View;
 import com.indianic.R;
 import com.indianic.fragment.HomeFragment;
 
+/**
+ * Sample Home activity with Navigation menu.
+ */
 public class HomeActivity extends BaseActivity implements DrawerLayout.DrawerListener {
 
     /**
@@ -26,7 +29,7 @@ public class HomeActivity extends BaseActivity implements DrawerLayout.DrawerLis
     protected void initializeComponents() {
         replaceFragment(R.id.activity_home_flContainer, getFragmentManager(), new HomeFragment(), false, false);
 
-        drawerLayout = findViewById(R.id.activity_home_drawer_layout);
+        drawerLayout = findViewById(R.id.activity_home_drawerLayout);
         drawerLayout.addDrawerListener(this);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 

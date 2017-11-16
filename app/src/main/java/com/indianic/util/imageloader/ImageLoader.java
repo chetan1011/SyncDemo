@@ -21,8 +21,8 @@ public class ImageLoader {
 
 
     public static void loadImage(final Context context, final ImageView imageView, final String imageUrl, int placeHolderRes) {
-        if (placeHolderRes != R.drawable.placeholder_l_banner) {
-            placeHolderRes = R.drawable.placeholder_l_banner;
+        if (placeHolderRes != R.drawable.placeholder_banner) {
+            placeHolderRes = R.drawable.placeholder_banner;
         }
 
         Glide.with(context)

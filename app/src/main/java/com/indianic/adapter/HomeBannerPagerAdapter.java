@@ -54,9 +54,9 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
         final View itemView = layoutInflater.inflate(R.layout.row_home_banner, container, false);
-        final ImageView imageView = itemView.findViewById(R.id.row_home_banner_iv);
+        final ImageView imageView = itemView.findViewById(R.id.row_home_banner_ivOffer);
 
-        ImageLoader.loadImage(context, imageView, R.drawable.dummy_banner_image, R.drawable.placeholder_l_banner);
+        ImageLoader.loadImage(context, imageView, R.drawable.dummy_banner_image, R.drawable.placeholder_banner);
 
         container.addView(itemView);
 
@@ -88,7 +88,7 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
         final int id = v.getId();
 
         switch (id) {
-            case R.id.row_home_banner_iv:
+            case R.id.row_home_banner_ivOffer:
                 if (onItemClick != null) {
                     onItemClick.onClickBanner((Integer) v.getTag());
                 }

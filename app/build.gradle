@@ -19,6 +19,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        // In general we want to check for problems. Any time, all the time.
+        checkReleaseBuilds true
+        // And fail the build if we have errors
+        abortOnError true
+
+        // Level depends on the type AccountModel the job
+        /// Fail the build if buildGreenhouseRelease target is called and we have missing translations!
+        project.ext.isRelease ? error("MissingTranslation") : warning("MissingTranslation")
+        // Error level things
+        /// Hardcoded text should not exist or should have case by case exceptions
+        error "HardcodedText"
+    }
 }
 
 dependencies {

@@ -20,6 +20,7 @@ allprojects {
     }
     //THIS IS WHAT YOU ARE ADDING
     project.ext {
+        isRelease = false
         buildToolsVersion = "26.0.2" //String
         supportLibraryVersion = "27.0.0" //String
         sdp = "1.0.4" //String

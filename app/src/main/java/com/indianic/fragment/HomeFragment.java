@@ -4,14 +4,19 @@ package com.indianic.fragment;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.indianic.R;
 import com.indianic.adapter.HomeBannerPagerAdapter;
+import com.indianic.adapter.ItemsAdapter;
 import com.indianic.model.BannerModel;
 import com.indianic.model.HomeDataModel;
 import com.indianic.util.Utils;
+import com.indianic.util.listener.OnItemClickListener;
 
 import java.util.ArrayList;
 
@@ -25,8 +30,10 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
 
     private HomeDataModel homeDataModel;//Model containing all the Home screen Data.
     private TabLayout tblBannerIndicator;//Banner images pager page indicator
+    private RecyclerView rvItemList;
 
     private HomeBannerPagerAdapter bannerAdapter;//Banner images pageradapter
+    private ItemsAdapter itemsAdapter;//Recyclerview adapter
 
     private Handler bannerHandler;// Handler, managing the banner pager auto swipe.
     private int currentBanner;//Represents the current visible banner position.
@@ -40,17 +47,30 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     @Override
     protected void initializeComponent(View view) {
 
+        rvItemList = view.findViewById(R.id.fragment_home_rvItemList);
         vpBanner = view.findViewById(R.id.fragment_home_vpBanner);
         tblBannerIndicator = view.findViewById(R.id.fragment_home_tblPageIndicator);
         tblBannerIndicator.setupWithViewPager(vpBanner);
 
         setDummyData();
         setBanner();
+        setAdapter();
     }
 
     @Override
     public void reloadData() {
 
+    }
+
+    private void setAdapter() {
+        rvItemList.setLayoutManager(new LinearLayoutManager(getActivity()));
+        itemsAdapter = new ItemsAdapter(getActivity(), homeDataModel.getBannerList(), new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(getActivity(), "RecyclerView Item " + position + " Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        rvItemList.setAdapter(itemsAdapter);
     }
 
     /**
@@ -118,7 +138,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
 
     @Override
     public void onClickBanner(int position) {
-
+        Toast.makeText(getActivity(), "Banner Item " + position + " Clicked", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -159,7 +179,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
         homeDataModel = new HomeDataModel();
         final ArrayList<BannerModel> bannerArrayList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            bannerArrayList.add(new BannerModel());
+            bannerArrayList.add(new BannerModel("Banner Item " + (i + 1)));
         }
         homeDataModel.setBannerList(bannerArrayList);
     }

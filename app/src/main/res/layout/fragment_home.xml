@@ -35,6 +35,11 @@
                 android:id="@+id/fragment_home_tblPageIndicator"
                 style="@style/StyleTabPageIndicator"
                 app:tabBackground="@drawable/drawable_bg_page_indicator_selector"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_home_rvItemList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

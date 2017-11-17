@@ -1,4 +1,4 @@
-package com.indianic.webservice;
+package com.indianic.webservice.okhttp;
 
 /**
  * Constants variable for web service call and response parsing.

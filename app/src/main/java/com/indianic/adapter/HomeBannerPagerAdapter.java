@@ -26,17 +26,15 @@ import java.util.ArrayList;
 public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClickListener {
 
     private Context context;
-    private LayoutInflater layoutInflater;
     private ArrayList<BannerModel> bannerList;
-    private OnItemClick onItemClick;
+    private OnItemClickListener onItemClickListener;
 
     private long lastClickedTime;
 
-    public HomeBannerPagerAdapter(final Context context, final ArrayList<BannerModel> bannerList, final OnItemClick onItemClick) {
+    public HomeBannerPagerAdapter(final Context context, final ArrayList<BannerModel> bannerList, final OnItemClickListener onItemClickListener) {
         this.context = context;
-        layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.bannerList = bannerList;
-        this.onItemClick = onItemClick;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-        final View itemView = layoutInflater.inflate(R.layout.row_home_banner, container, false);
+        final View itemView = LayoutInflater.from(context).inflate(R.layout.row_home_banner, container, false);
         final ImageView imageView = itemView.findViewById(R.id.row_home_banner_ivOffer);
 
         ImageLoader.loadImage(context, imageView, R.drawable.dummy_banner_image, R.drawable.placeholder_banner);
@@ -89,15 +87,15 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
 
         switch (id) {
             case R.id.row_home_banner_ivOffer:
-                if (onItemClick != null) {
-                    onItemClick.onClickBanner((Integer) v.getTag());
+                if (onItemClickListener != null) {
+                    onItemClickListener.onClickBanner((Integer) v.getTag());
                 }
                 break;
         }
 
     }
 
-    public interface OnItemClick {
+    public interface OnItemClickListener {
         void onClickBanner(int position);
     }
 }

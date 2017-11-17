@@ -6,16 +6,22 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Patterns;
@@ -24,6 +30,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.indianic.R;
+
+import java.io.File;
+import java.util.Locale;
 
 
 /**
@@ -86,34 +95,6 @@ public class Utils {
             }
         }
         return false;
-    }
-
-
-    /**
-     * Displays alert dialog to show common messages.
-     *
-     * @param title   Title of the Dialog : Application's Name
-     * @param message Message to be shown in the Dialog displayed
-     * @param context Context of the Application, where the Dialog needs to be displayed
-     */
-    public static void displayDialog(final Context context, final String title, final String message) {
-
-        final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle(title);
-        alertDialog.setCancelable(false);
-
-        alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, context.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-
-            }
-        });
-
-        if (!((Activity) context).isFinishing()) {
-            alertDialog.show();
-        }
     }
 
 
@@ -219,6 +200,69 @@ public class Utils {
         return metrics;
     }
 
+    /**
+     * Save Language specific to application using ConfigLocale
+     *
+     * @param languageCode code of language which want to set
+     */
+    public static void saveLanguageSetting(final Context context, String languageCode) {
+        if (!languageCode.equalsIgnoreCase("en") && !languageCode.equalsIgnoreCase("it")) {
+            languageCode = "en";
+        }
+
+        final Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        final Configuration config = new Configuration();
+        config.locale = locale;
+        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+        Preference.getInstance().setData(Preference.PREFERENCE_LANG_ID, languageCode.toUpperCase());
+    }
+
+    /**
+     * to get file uri as per OS version check for pre Marshmallow uri also
+     *
+     * @param context context of current visible activity
+     * @param file    file which Uri whants
+     * @return file Uri
+     */
+    public static Uri getUri(final Context context, final File file) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (context != null) {
+                return FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".fileprovider", file);
+            } else {
+                return Uri.fromFile(file);
+            }
+        } else {
+            return Uri.fromFile(file);
+        }
+    }
+
+    /**
+     * Launch web page into third party app.
+     */
+    public static void openWebPage(final Activity activity, final String url) {
+        if (activity != null && !TextUtils.isEmpty(url)) {
+            final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                activity.startActivity(intent);
+            }
+        }
+    }
+
+    /**
+     * set formatted Html text
+     *
+     * @param formattedString formatted string
+     * @return spanned text
+     */
+    public static Spanned setFormattedHtmlString(final String formattedString) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return Html.fromHtml(formattedString, Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            return Html.fromHtml(formattedString);
+        }
+    }
+
 
     /**
      * Performs the share intent.
@@ -233,33 +277,6 @@ public class Utils {
         }
     }
 
-    /**
-     * Returns true if 80% scrolling is done.
-     */
-    private static boolean needLoadMore(int lastVisibleItemPosition, int totalItemCount) {
-        final int max = (int) (totalItemCount * 0.8);
-        return (lastVisibleItemPosition) >= max && lastVisibleItemPosition >= 0;
-    }
-
-    /**
-     * Returns true if it need to load more items.
-     */
-    public static boolean needLoadMore(final GridLayoutManager layoutManager) {
-        int totalItemCount = layoutManager.getItemCount();
-        int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
-
-        return needLoadMore(lastVisibleItemPosition, totalItemCount);
-    }
-
-    /**
-     * Returns true if it need to load more items.
-     */
-    public static boolean needLoadMore(final LinearLayoutManager layoutManager) {
-        int totalItemCount = layoutManager.getItemCount();
-        int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
-
-        return needLoadMore(lastVisibleItemPosition, totalItemCount);
-    }
 
     /**
      * Cancels the running async task.
@@ -271,4 +288,46 @@ public class Utils {
         return false;
     }
 
+    /**
+     * checks the device has camera or not
+     *
+     * @param mActivity object required for get package manager
+     * @return true if camera is available otherwise false
+     */
+    public boolean isCamera(Activity mActivity) {
+        if (mActivity != null && !mActivity.isFinishing()) {
+            PackageManager packageManager = mActivity.getPackageManager();
+
+            return packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA);
+        } else {
+            return false;
+        }
+    }
+//    /**
+//     * Returns true if 80% scrolling is done.
+//     */
+//    private static boolean needLoadMore(int lastVisibleItemPosition, int totalItemCount) {
+//        final int max = (int) (totalItemCount * 0.8);
+//        return (lastVisibleItemPosition) >= max && lastVisibleItemPosition >= 0;
+//    }
+//
+//    /**
+//     * Returns true if it need to load more items.
+//     */
+//    public static boolean needLoadMore(final GridLayoutManager layoutManager) {
+//        int totalItemCount = layoutManager.getItemCount();
+//        int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+//
+//        return needLoadMore(lastVisibleItemPosition, totalItemCount);
+//    }
+//
+//    /**
+//     * Returns true if it need to load more items.
+//     */
+//    public static boolean needLoadMore(final LinearLayoutManager layoutManager) {
+//        int totalItemCount = layoutManager.getItemCount();
+//        int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+//
+//        return needLoadMore(lastVisibleItemPosition, totalItemCount);
+//    }
 }

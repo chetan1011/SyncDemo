@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/drawable_rect_corner_bg_white"
+    android:maxWidth="@dimen/_600sdp"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/_5sdp"
+    android:paddingEnd="@dimen/_15sdp"
+    android:paddingStart="@dimen/_15sdp"
+    android:paddingTop="@dimen/_15sdp">
+
+    <TextView
+        android:id="@+id/common_dialog_tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_16sdp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/common_dialog_tvMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/common_dialog_tvTitle"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_13sdp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/common_dialog_tvMsg"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/common_dialog_btnNegative"
+            style="@style/StyleTvDialogAction"
+            android:text="@string/cancel"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/common_dialog_btnPositive"
+            style="@style/StyleTvDialogAction"
+            android:text="@string/submit"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -9,6 +9,10 @@ public class BannerModel {
     private String title = "";
     private String webUrl = "";
 
+    public BannerModel(String title) {
+        this.title = title;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }

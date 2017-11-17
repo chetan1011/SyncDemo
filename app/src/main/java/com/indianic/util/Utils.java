@@ -9,17 +9,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -39,18 +34,6 @@ import java.util.Locale;
  * Performs common utility operations.
  */
 public class Utils {
-
-    /**
-     * Checks the Network availability.
-     *
-     * @return true if internet available, false otherwise
-     */
-    public static boolean isNetworkAvailable(Context context) {
-        final ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo activeNetwork = cm != null ? cm.getActiveNetworkInfo() : null;
-
-        return (activeNetwork != null && activeNetwork.isConnectedOrConnecting());
-    }
 
     /**
      * checks the GPS is enable or not
@@ -177,14 +160,17 @@ public class Utils {
      *
      * @return Snack bar
      */
-    public static Snackbar showSnackBar(final Context context, final View view, final boolean isError, final String message, final String defaultMessage) {
+    public static Snackbar showSnackBar(final Context context, final View view, final String message, final String defaultMessage, final String actionLabel, final View.OnClickListener clickListener) {
         if (view == null) {
             return null;
         }
 
         final Snackbar snackbar = Snackbar.make(view, TextUtils.isEmpty(message) ? defaultMessage : message, Snackbar.LENGTH_LONG);
         final View snackBarView = snackbar.getView();
-        snackBarView.setBackgroundColor(ContextCompat.getColor(context, isError ? android.R.color.holo_red_dark : android.R.color.holo_green_dark));
+//        snackBarView.setBackgroundColor(ContextCompat.getColor(context, isError ? android.R.color.holo_red_dark : android.R.color.holo_green_dark));
+        if (!TextUtils.isEmpty(actionLabel)) {
+            snackbar.setAction(actionLabel, clickListener);
+        }
         final TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setMaxLines(5);
         snackbar.show();

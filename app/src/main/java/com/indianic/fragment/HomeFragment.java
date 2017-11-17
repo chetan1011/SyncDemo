@@ -15,6 +15,7 @@ import com.indianic.adapter.HomeBannerPagerAdapter;
 import com.indianic.adapter.ItemsAdapter;
 import com.indianic.model.BannerModel;
 import com.indianic.model.HomeDataModel;
+import com.indianic.util.NetworkUtils;
 import com.indianic.util.Utils;
 import com.indianic.webservice.retrofit.WSUtils;
 
@@ -128,7 +129,6 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
 
     @Override
     public void onClickBanner(int position) {
-        Toast.makeText(getActivity(), "Banner Item " + position + " Clicked", Toast.LENGTH_SHORT).show();
         addFragment(R.id.activity_home_flContainer, this, new ItemFragment(), true, false);
     }
 

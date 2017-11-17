@@ -13,7 +13,7 @@
 
         <ImageButton
             android:id="@+id/header_ibMenu"
-            style="@style/ImageButton.Header"
+            style="@style/StyleImageButton.Header"
             android:layout_alignParentStart="true"
             android:contentDescription="@null"
             android:src="@drawable/ic_nav_slider"
@@ -21,7 +21,7 @@
 
         <ImageButton
             android:id="@+id/header_ibCart"
-            style="@style/ImageButton.Header"
+            style="@style/StyleImageButton.Header"
             android:layout_alignParentEnd="true"
             android:contentDescription="@null"
             android:src="@drawable/ic_nav_cart"
@@ -41,7 +41,7 @@
 
     <EditText
         android:id="@+id/header_tvSearch"
-        style="@style/EditText.HeaderSearch"
+        style="@style/StyleEditText.HeaderSearch"
         android:layout_marginBottom="@dimen/dimen_10dp"
         android:layout_marginEnd="@dimen/dimen_10dp"
         android:layout_marginStart="@dimen/dimen_10dp"

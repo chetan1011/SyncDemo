@@ -14,18 +14,28 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="StyleCommonDialog" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
     <!--Common styles @Start-->
-    <style name="TextStyle" parent="TextAppearance.AppCompat">
+    <style name="StyleText" parent="TextAppearance.AppCompat">
     </style>
 
-    <style name="EditTextStyle" parent="Base.Widget.AppCompat.EditText">
+    <style name="StyleEditText" parent="Base.Widget.AppCompat.EditText">
     </style>
 
-    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+    <style name="StyleButton" parent="Widget.AppCompat.Button">
     </style>
     <!--Common styles @End-->
 
-    <style name="ImageButton.Header" parent="Widget.AppCompat.ImageButton">
+    <style name="StyleImageButton.Header" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@android:color/transparent</item>
@@ -34,7 +44,7 @@
         <item name="android:paddingStart">@dimen/dimen_10dp</item>
     </style>
 
-    <style name="EditText.HeaderSearch" parent="EditTextStyle">
+    <style name="StyleEditText.HeaderSearch" parent="StyleEditText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimen_40dp</item>
         <item name="android:background">@drawable/drawable_bg_white_corner</item>
@@ -47,13 +57,13 @@
         <item name="android:textSize">@dimen/font_16sp</item>
     </style>
 
-    <style name="BannerImages">
+    <style name="StyleBannerImages">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimen_200dp</item>
         <item name="android:background">@android:color/white</item>
     </style>
 
-    <style name="TabPageIndicator" parent="Widget.Design.TabLayout">
+    <style name="StyleTabPageIndicator" parent="Widget.Design.TabLayout">
         <item name="tabGravity">center</item>
         <item name="tabIndicatorHeight">0dp</item>
         <item name="tabPaddingStart">@dimen/dimen_1dp</item>
@@ -63,7 +73,7 @@
         <item name="android:background">@android:color/white</item>
     </style>
 
-    <style name="DialogCommon" parent="android:Theme.Dialog">
+    <style name="StyleDialogCommon" parent="android:Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">false</item>
@@ -73,7 +83,7 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="Text.DialogAction" parent="TextStyle">
+    <style name="StyleText.DialogAction" parent="StyleText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <!--<item name="android:fontFamily">@font/font_gotham_medium</item>-->

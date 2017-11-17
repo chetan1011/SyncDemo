@@ -16,14 +16,19 @@ import com.indianic.adapter.ItemsAdapter;
 import com.indianic.model.BannerModel;
 import com.indianic.model.HomeDataModel;
 import com.indianic.util.Utils;
-import com.indianic.util.listener.OnItemClickListener;
+import com.indianic.webservice.retrofit.WSUtils;
 
 import java.util.ArrayList;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Sample Fragment for reference purpose only.
  */
-public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter.OnItemClick {
+public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter.OnItemClickListener, ItemsAdapter.OnItemClickListener {
 
     public static final int DELAY = 5000;// Milliseconds delay to swipe banner view pager automatically.
     private ViewPager vpBanner;//Banner images view pager
@@ -33,7 +38,6 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     private RecyclerView rvItemList;
 
     private HomeBannerPagerAdapter bannerAdapter;//Banner images pageradapter
-    private ItemsAdapter itemsAdapter;//Recyclerview adapter
 
     private Handler bannerHandler;// Handler, managing the banner pager auto swipe.
     private int currentBanner;//Represents the current visible banner position.
@@ -64,12 +68,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
 
     private void setAdapter() {
         rvItemList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        itemsAdapter = new ItemsAdapter(getActivity(), homeDataModel.getBannerList(), new OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Toast.makeText(getActivity(), "RecyclerView Item " + position + " Clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        final ItemsAdapter itemsAdapter = new ItemsAdapter(getActivity(), homeDataModel.getBannerList(), this);
         rvItemList.setAdapter(itemsAdapter);
     }
 
@@ -182,5 +181,29 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
             bannerArrayList.add(new BannerModel("Banner Item " + (i + 1)));
         }
         homeDataModel.setBannerList(bannerArrayList);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Toast.makeText(getActivity(), "RecyclerView Item " + position + " Clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Sample method to call the webservice using Retrofit.
+     */
+    private void callLoginWS(final String email, final String password) {
+
+        WSUtils.getClient().login(email, password).enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Utils.showSnackBar(rvProducts, getString(R.string.alert_something_wrong), true, getActivity());
+            }
+        });
     }
 }

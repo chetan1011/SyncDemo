@@ -13,7 +13,6 @@ import com.indianic.R;
 import com.indianic.model.BannerModel;
 import com.indianic.util.Constants;
 import com.indianic.util.imageloader.ImageLoader;
-import com.indianic.util.listener.OnItemClickListener;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemHolder> {
 
     private Context context;
-    private LayoutInflater layoutInflater;
     private ArrayList<BannerModel> itemsList;
     private OnItemClickListener itemClickListener;
 
@@ -31,14 +29,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemHolder> 
 
     public ItemsAdapter(final Context context, final ArrayList<BannerModel> itemsList, final OnItemClickListener itemClickListener) {
         this.context = context;
-        layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.itemsList = itemsList;
         this.itemClickListener = itemClickListener;
     }
 
     @Override
     public ItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ItemHolder(layoutInflater.inflate(R.layout.row_item, parent, false));
+        return new ItemHolder(LayoutInflater.from(context).inflate(R.layout.row_item, parent, false));
     }
 
     @Override
@@ -63,7 +60,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemHolder> 
             tvTitle = itemView.findViewById(R.id.row_item_tvTitle);
         }
 
-        void bind(BannerModel model) {
+        void bind(final BannerModel model) {
             tvTitle.setText(model.getTitle());
             ImageLoader.loadImage(context, ivOffer, R.drawable.dummy_banner_image, R.drawable.placeholder_banner);
             itemView.setOnClickListener(this);
@@ -72,22 +69,24 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemHolder> 
         @Override
         public void onClick(View v) {
             int position = (int) v.getTag();
-            if (!isDoubleTap()) {
-                if (itemClickListener != null)
-                    itemClickListener.onItemClick(position);
+            /*
+            * Logic to Prevent the Launch of the Fragment Twice if User makes
+            * the Tap(Click) very Fast.
+            */
+            if (SystemClock.elapsedRealtime() - lastClickedTime < Constants.MAX_CLICK_INTERVAL) {
+
+                return;
+            }
+            lastClickedTime = SystemClock.elapsedRealtime();
+
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(position);
             }
         }
     }
 
-    private boolean isDoubleTap() {
-        /*
-         * Logic to Prevent the Launch of the Fragment Twice if User makes
-         * the Tap(Click) very Fast.
-         */
-        if (SystemClock.elapsedRealtime() - lastClickedTime < Constants.MAX_CLICK_INTERVAL) {
-            return true;
-        }
-        lastClickedTime = SystemClock.elapsedRealtime();
-        return false;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
     }
 }

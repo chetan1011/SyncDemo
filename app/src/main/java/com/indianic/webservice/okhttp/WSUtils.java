@@ -1,4 +1,4 @@
-package com.indianic.webservice;
+package com.indianic.webservice.okhttp;
 
 
 import android.content.Context;

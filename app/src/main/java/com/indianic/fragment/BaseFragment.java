@@ -81,17 +81,17 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
       Drawer menu image button
      */
         final ImageButton ibMenu = view.findViewById(R.id.header_ibMenu);
-        /*final ImageView ibBack = (ImageView) view.findViewById(R.id.header_iv_back);
-        final ImageView ivSearch = (ImageView) view.findViewById(R.id.header_iv_search);*/
+        final ImageButton ibBack = view.findViewById(R.id.header_ibBack);
+//        final ImageView ivSearch = (ImageView) view.findViewById(R.id.header_iv_search);
 
 
         if (ibMenu != null) {
             ibMenu.setOnClickListener(this);
         }
-        /*if (ibBack != null) {
+        if (ibBack != null) {
             ibBack.setOnClickListener(this);
         }
-        if (ivSearch != null) {
+        /*if (ivSearch != null) {
             ivSearch.setOnClickListener(this);
         }*/
         initializeComponent(view);
@@ -190,11 +190,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
                 break;
 
-/*
-            case R.id.header_iv_back:
+            case R.id.header_ibBack:
                 getFragmentManager().popBackStack();
                 break;
-*/
 
 
             case R.id.layout_empty_view_llMain:

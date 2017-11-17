@@ -86,7 +86,7 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
         final int id = v.getId();
 
         switch (id) {
-            case R.id.row_home_banner_ivOffer:
+            case R.id.row_home_banner_llMain:
                 if (onItemClickListener != null) {
                     onItemClickListener.onClickBanner((Integer) v.getTag());
                 }

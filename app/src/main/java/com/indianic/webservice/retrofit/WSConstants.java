@@ -21,7 +21,7 @@ public class WSConstants {
     /**
      * Webservice parameters
      */
-    public static final String WS_PARAM_USERS_ID = "users_id";
+    static final String WS_PARAM_USERS_ID = "users_id";
     static final String WS_PARAM_IS_FILE = "is_file";
     static final String WS_PARAM_EMAIL = "email";
     static final String WS_PARAM_PASSWORD = "password";
@@ -30,7 +30,7 @@ public class WSConstants {
     static final String WS_PARAM_PHONE_NUMBER = "phone_number";
     static final String WS_PARAM_SALUTATION = "salutation";
 
-    public static final String WS_PARAM_PROFILE_IMAGE = "profile_image";
+    static final String WS_PARAM_PROFILE_IMAGE = "profile_image";
 
     public static final String WS_STATUS_SUCCESS = "1";
     public static final String WS_STATUS_FAIL = "0";

@@ -294,7 +294,7 @@ public class Utils {
      * @param mActivity object required for get package manager
      * @return true if camera is available otherwise false
      */
-    public boolean isCamera(Activity mActivity) {
+    public static boolean isCamera(Activity mActivity) {
         if (mActivity != null && !mActivity.isFinishing()) {
             PackageManager packageManager = mActivity.getPackageManager();
 

@@ -20,7 +20,7 @@ public class Preference {
      */
     private final String PREFERENCE_USER_ID = "USER_ID";
     public final String PREFERENCE_USER_IS_LOGIN = "USER_IS_LOGIN";
-    public static final String PREFERENCE_LANG_ID = "PREFERENCE_LANG_ID";
+    public static final String PREFERENCE_LANG_ID = "LANG_ID";
 
 
     private SharedPreferences sharedPreferences;

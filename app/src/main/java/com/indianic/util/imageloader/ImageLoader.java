@@ -46,7 +46,7 @@ public class ImageLoader {
      * @param imageView imageView into set image
      */
 
-    public void getGlideRounded(final Context context, final String uri, final CircleImageView imageView) {
+    public static void getGlideRounded(final Context context, final String uri, final CircleImageView imageView) {
         Glide.with(context).asBitmap().load(uri).into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {

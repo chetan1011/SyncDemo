@@ -64,15 +64,12 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         return inflater.inflate(defineLayoutResource(), container, false);
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         pbProgress = view.findViewById(R.id.layout_pbProgress);
-
         llEmptyView = view.findViewById(R.id.layout_empty_view_llMain);
-
 
         if (llEmptyView != null) {
             llEmptyView.setVisibility(View.GONE);
@@ -193,9 +190,11 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
                 break;
 
-            /*case R.id.header_iv_back:
+/*
+            case R.id.header_iv_back:
                 getFragmentManager().popBackStack();
-                break;*/
+                break;
+*/
 
 
             case R.id.layout_empty_view_llMain:

@@ -76,7 +76,7 @@ public class DisplayDialog {
             }
 
             commonDialog = new Dialog(context, R.style.StyleCommonDialog);
-            commonDialog.setContentView(R.layout.custom_common_dialog);
+            commonDialog.setContentView(R.layout.dialog_custom_common);
 
             if (commonDialog.getWindow() != null) {
                 final WindowManager.LayoutParams wlmp = commonDialog.getWindow().getAttributes();
@@ -92,10 +92,10 @@ public class DisplayDialog {
                 //                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             }
 
-            final TextView tvTitle = commonDialog.findViewById(R.id.common_dialog_tvTitle);
-            final TextView tvMsg = commonDialog.findViewById(R.id.common_dialog_tvMsg);
-            final TextView btnPositive = commonDialog.findViewById(R.id.common_dialog_btnPositive);
-            final TextView btnNegative = commonDialog.findViewById(R.id.common_dialog_btnNegative);
+            final TextView tvTitle = commonDialog.findViewById(R.id.dialog_custom_common_tvTitle);
+            final TextView tvMsg = commonDialog.findViewById(R.id.dialog_custom_common_tvMsg);
+            final TextView btnPositive = commonDialog.findViewById(R.id.dialog_custom_common_btnPositive);
+            final TextView btnNegative = commonDialog.findViewById(R.id.dialog_custom_common_btnNegative);
 
             tvTitle.setText(title.trim());
             tvMsg.setText(Utils.setFormattedHtmlString(msg.trim()));

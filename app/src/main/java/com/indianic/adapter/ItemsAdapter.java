@@ -62,7 +62,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemHolder> 
 
         void bind(final BannerModel model) {
             tvTitle.setText(model.getTitle());
-            ImageLoader.loadImage(context, ivOffer, R.drawable.dummy_banner_image, R.drawable.placeholder_banner);
+            ImageLoader.loadImage(context, ivOffer, R.drawable.placeholder_banner, R.drawable.placeholder_banner);
             itemView.setOnClickListener(this);
         }
 

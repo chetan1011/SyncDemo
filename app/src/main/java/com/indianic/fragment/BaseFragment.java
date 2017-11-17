@@ -71,7 +71,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
         pbProgress = view.findViewById(R.id.layout_pbProgress);
 
-        llEmptyView = view.findViewById(R.id.layout_empty_view_ll_main);
+        llEmptyView = view.findViewById(R.id.layout_empty_view_llMain);
 
 
         if (llEmptyView != null) {
@@ -198,7 +198,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
                 break;*/
 
 
-            case R.id.layout_empty_view_ll_main:
+            case R.id.layout_empty_view_llMain:
                 reloadData();
                 break;
         }

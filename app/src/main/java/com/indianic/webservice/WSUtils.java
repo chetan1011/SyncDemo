@@ -3,8 +3,6 @@ package com.indianic.webservice;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
-
 
 import com.indianic.R;
 
@@ -22,7 +20,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * Calls the the API.
+ * Provides the different methods to call the webservice.
  */
 public class WSUtils {
 
@@ -39,7 +37,7 @@ public class WSUtils {
 
     private final static String TAG = WSUtils.class.getSimpleName();
 
-    public static void callHttpGet(final Context context, final String url) {
+    public static String callHttpGet(final Context context, final String url) {
         try {
             final OkHttpClient okHttpClient = getOkHttpClient();
 
@@ -47,17 +45,17 @@ public class WSUtils {
             builder.url(url);
 
             //* Add authentication header if required *//*
-            builder.addHeader("Authorization", "bearer 896b21d1-52c1-4a24-a5b2-819f813fa0ff");
+//            builder.addHeader("Authorization", "bearer 896b21d1-52c1-4a24-a5b2-819f813fa0ff");
 //            builder.addHeader("Authorization", "bearer 896b21d1-52c1-4a24-a5b2-819f813fa0ff");
 
             final Response response;
             response = okHttpClient.newCall(builder.build()).execute();
 
-            final String responseString = response.body().string();
+            return response.body().string();
 
-            Log.e(TAG, "Response : " + responseString);
         } catch (Exception e) {
             e.printStackTrace();
+            return getNetworkError(context);
         }
     }
 
@@ -71,14 +69,8 @@ public class WSUtils {
             final Request request = new Request.Builder().url(url).post(jsonBody).build();
 
             Response response = client.newCall(request).execute();
-            final String responseString = response.body().string();
-            Log.e(TAG, "URL : " + url);
-            Log.e(TAG, "Request : " + jsonString);
-            Log.e(TAG, "Response Code : " + response.code());
-            Log.e(TAG, "Response : " + responseString);
-            Log.e(TAG, "----------------------------");
 
-            return responseString;
+            return response.body().string();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,17 +96,8 @@ public class WSUtils {
             }
             Response response = call.execute();
 
-//            Response response = client.newCall(request).execute();
 
-            final String responseString = response.body().string();
-//            Log.e(TAG, "Request ---: " + jsonString);
-//            Log.e(TAG, "Response ---: " + responseString);
-
-
-//            Log.e(TAG, "Response Time in milliseconds : " + (l1 - l));
-//            Log.e(TAG, "-------------------------------------------");
-
-            return responseString;
+            return response.body().string();
 
         } catch (Exception e) {
             e.printStackTrace();

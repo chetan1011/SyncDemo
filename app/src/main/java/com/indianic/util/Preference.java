@@ -19,8 +19,7 @@ public class Preference {
      * Preference key for userId
      */
     private final String PREFERENCE_USER_ID = "USER_ID";
-    private final String PREFERENCE_USER_IS_LOGIN = "USER_IS_LOGIN";
-    final String PREFERENCE_LANG_ID = "LANG_ID";
+    public final String PREFERENCE_USER_IS_LOGIN = "USER_IS_LOGIN";
 
 
     private SharedPreferences sharedPreferences;
@@ -40,59 +39,41 @@ public class Preference {
     }
 
     /**
+     * Returns the userId from the Shared Preference file
+     *
+     * @return userId
+     */
+    public String getUserId() {
+        return sharedPreferences.getString(PREFERENCE_USER_ID, "");
+    }
+
+    /**
+     * Stores the userId into Shared Preference file
+     */
+    public void setUserId(final String userId) {
+        sharedPreferences.edit().putString(PREFERENCE_USER_ID, userId).apply();
+    }
+
+    /**
      * Stores the {@link String} value in the preference
      *
      * @param key   {@link String} parameter for the key for the values in preference
      * @param value {@link String} parameter for the value to be stored in preference
      */
-    public void savePreferenceData(String key, String value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.apply();
+    public void setData(String key, String value) {
+        sharedPreferences.edit().putString(key, value).apply();
     }
 
-    /**
-     * Stores the {@link Boolean} value in the preference
-     *
-     * @param key   {@link String} parameter for the key for the values in preference
-     * @param value {@link Boolean} parameter for the value to be stored in preference
-     */
-    public void savePreferenceData(String key, boolean value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key, value);
-        editor.apply();
-    }
-
-    /**
-     * Stores the {@link Integer} value in the preference
-     *
-     * @param key   {@link String} parameter for the key for the values in preference
-     * @param value {@link Integer} parameter for the value to be stored in preference
-     */
-    public void savePreferenceData(String key, int value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(key, value);
-        editor.apply();
-    }
-
-    /**
-     * Stores the {@link Long} value in the preference
-     *
-     * @param key   {@link String} parameter for the key for the values in preference
-     * @param value {@link Long} parameter for the value to be stored in preference
-     */
-    public void savePreferenceData(String key, long value) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong(key, value);
-        editor.apply();
+    public void getData(String key, String defaultValue) {
+        sharedPreferences.getString(key, defaultValue);
     }
 
     /**
      * clearAllPreferenceData : it will clear all data from preference
      */
     public void clearAllPreferenceData() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear();
-        editor.apply();
+        sharedPreferences.edit().clear().apply();
     }
+
+
 }

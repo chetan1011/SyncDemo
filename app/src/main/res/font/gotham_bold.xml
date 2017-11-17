@@ -2,7 +2,7 @@
 <font-family
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <font
-        app:font="@font/gotham_bold"
+        app:font="@font/font_gotham_bold"
         app:fontStyle="normal"
         app:fontWeight="400"/>
 

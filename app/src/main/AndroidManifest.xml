@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.indianic.AndroidApp"
         android:allowBackup="false"
@@ -24,12 +25,9 @@
         <activity
             android:name="com.indianic.activity.HomeActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/StyleStatusBarTransparent"
+            android:theme="@style/AppTheme.StatusBarTransparent"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
 
-        <meta-data
-            android:name="com.indianic.util.imageloader.GlideConfiguration"
-            android:value="GlideModule"/>
 
     </application>
 

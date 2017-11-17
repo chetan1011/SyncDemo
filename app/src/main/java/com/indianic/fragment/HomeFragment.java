@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.indianic.R;
 import com.indianic.adapter.HomeBannerPagerAdapter;
@@ -14,6 +15,9 @@ import com.indianic.util.Utils;
 
 import java.util.ArrayList;
 
+/**
+ * Sample Fragment for reference purpose only.
+ */
 public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter.OnItemClick {
 
     public static final int DELAY = 5000;// Milliseconds delay to swipe banner view pager automatically.
@@ -22,9 +26,9 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     private HomeDataModel homeDataModel;//Model containing all the Home screen Data.
     private TabLayout tblBannerIndicator;//Banner images pager page indicator
 
-    private HomeBannerPagerAdapter bannerAdapter;//Banner images page adapter
+    private HomeBannerPagerAdapter bannerAdapter;//Banner images pageradapter
 
-    private Handler bannerHandler;// Handler managing the banner pager auto swipe.
+    private Handler bannerHandler;// Handler, managing the banner pager auto swipe.
     private int currentBanner;//Represents the current visible banner position.
 
 
@@ -36,8 +40,8 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     @Override
     protected void initializeComponent(View view) {
 
-        vpBanner = (ViewPager) view.findViewById(R.id.fragment_home_vp_banner);
-        tblBannerIndicator = (TabLayout) view.findViewById(R.id.fragment_home_tbl_page_indicator);
+        vpBanner = view.findViewById(R.id.fragment_home_vpBanner);
+        tblBannerIndicator = view.findViewById(R.id.fragment_home_tblPageIndicator);
         tblBannerIndicator.setupWithViewPager(vpBanner);
 
         setDummyData();
@@ -58,7 +62,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
             vpBanner.setAdapter(bannerAdapter);
             tblBannerIndicator.setVisibility(View.VISIBLE);
 
-            Utils.getInstance().setViewHeight(getActivity(), vpBanner);
+            setBannerHeight();
 
             vpBanner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
@@ -85,16 +89,17 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
                 bannerHandler = new Handler();
                 startAutoSwipeBanner();
             }
-//            setToolbarAlpha(0);
-
-//            svContent.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-//                @Override
-//                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//
-//                    setToolbarAlpha(scrollY);
-//                }
-//            });
         }
+    }
+
+    private void setBannerHeight() {
+        final ViewGroup.LayoutParams params = vpBanner.getLayoutParams();
+
+        final int deviceWidth = Utils.getDeviceMetrics(getActivity()).widthPixels;
+        final float BANNER_ASPECT_RATIO = 16f / 9; //16:9 aspect ratio
+        params.height = (int) (deviceWidth / BANNER_ASPECT_RATIO); //left, top, right, bottom
+
+        vpBanner.setLayoutParams(params);
     }
 
     /**

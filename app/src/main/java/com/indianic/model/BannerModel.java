@@ -1,6 +1,8 @@
 package com.indianic.model;
 
-
+/*
+ * Model class, Contains the home screen banner data.
+ */
 public class BannerModel {
 
     private String imageUrl = "";

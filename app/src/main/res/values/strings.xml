@@ -25,8 +25,8 @@
     <string name="alert_no_data_message">No data available to show.</string>
 
     <string name="click_here_to_refresh">Click here to refresh</string>
-    <string name="lbl_search_message">What are you looking for?</string>
+    <string name="search_message">What are you looking for?</string>
 
-    <string name="share_intent_title">Choose your option.</string>
+    <string name="title_share_intent">Choose your option.</string>
     <string name="title_home">Home</string>
 </resources>

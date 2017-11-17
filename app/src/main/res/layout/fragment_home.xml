@@ -12,7 +12,7 @@
         />
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/fragment_home_sv_main"
+        android:id="@+id/fragment_home_svMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/fragment_home_header"
@@ -26,15 +26,20 @@
             android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/fragment_home_vp_banner"
-                style="@style/BannerImages"
-                android:layout_height="@dimen/dimen_100"
+                android:id="@+id/fragment_home_vpBanner"
+                style="@style/StyleBannerImages"
+                android:layout_height="@dimen/dimen_120dp"
                 />
             <!--android:layout_height="?android:attr/actionBarSize"-->
             <android.support.design.widget.TabLayout
-                android:id="@+id/fragment_home_tbl_page_indicator"
-                style="@style/TabLayout.PageIndicator"
-                app:tabBackground="@drawable/bg_page_indicator_selector"/>
+                android:id="@+id/fragment_home_tblPageIndicator"
+                style="@style/StyleTabPageIndicator"
+                app:tabBackground="@drawable/drawable_bg_page_indicator_selector"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/fragment_home_rvItemList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

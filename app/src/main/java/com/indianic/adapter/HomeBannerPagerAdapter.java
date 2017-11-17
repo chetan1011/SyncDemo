@@ -3,6 +3,7 @@ package com.indianic.adapter;
 
 import android.content.Context;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,17 +26,15 @@ import java.util.ArrayList;
 public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClickListener {
 
     private Context context;
-    private LayoutInflater layoutInflater;
     private ArrayList<BannerModel> bannerList;
-    private OnItemClick onItemClick;
+    private OnItemClickListener onItemClickListener;
 
     private long lastClickedTime;
 
-    public HomeBannerPagerAdapter(final Context context, final ArrayList<BannerModel> bannerList, final OnItemClick onItemClick) {
+    public HomeBannerPagerAdapter(final Context context, final ArrayList<BannerModel> bannerList, final OnItemClickListener onItemClickListener) {
         this.context = context;
-        layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.bannerList = bannerList;
-        this.onItemClick = onItemClick;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -44,34 +43,35 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-        final View itemView = layoutInflater.inflate(R.layout.row_home_banner, container, false);
-        final ImageView imageView = itemView.findViewById(R.id.row_home_banner_iv);
+        final View itemView = LayoutInflater.from(context).inflate(R.layout.row_home_banner, container, false);
+        final ImageView imageView = itemView.findViewById(R.id.row_home_banner_ivOffer);
 
-        ImageLoader.loadImage(context, imageView, R.drawable.dummy_banner_image, R.drawable.placeholder_l_banner);
+        ImageLoader.loadImage(context, imageView, R.drawable.placeholder_banner, R.drawable.placeholder_banner);
 
         container.addView(itemView);
 
-        imageView.setTag(position);
-        imageView.setOnClickListener(this);
+        itemView.setTag(position);
+        itemView.setOnClickListener(this);
 
         return itemView;
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((LinearLayout) object);
     }
 
     @Override
     public void onClick(View v) {
-        Utils.getInstance().hideSoftKeyBoard(context, v);
+        Utils.hideSoftKeyBoard(context, v);
         /*
          * Logic to Prevent the Launch of the Fragment Twice if User makes
          * the Tap(Click) very Fast.
@@ -86,16 +86,16 @@ public class HomeBannerPagerAdapter extends PagerAdapter implements View.OnClick
         final int id = v.getId();
 
         switch (id) {
-            case R.id.row_home_banner_iv:
-                if (onItemClick != null) {
-                    onItemClick.onClickBanner((Integer) v.getTag());
+            case R.id.row_home_banner_llMain:
+                if (onItemClickListener != null) {
+                    onItemClickListener.onClickBanner((Integer) v.getTag());
                 }
                 break;
         }
 
     }
 
-    public interface OnItemClick {
+    public interface OnItemClickListener {
         void onClickBanner(int position);
     }
 }

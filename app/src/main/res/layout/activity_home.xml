@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout android:id="@+id/activity_home_drawer_layout"
+<android.support.v4.widget.DrawerLayout android:id="@+id/activity_home_drawerLayout"
                                         xmlns:android="http://schemas.android.com/apk/res/android"
                                         xmlns:tools="http://schemas.android.com/tools"
                                         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:orientation="vertical">
         <!--This is Fragment container -->
         <FrameLayout
-            android:id="@+id/activity_home_fl_container"
+            android:id="@+id/activity_home_flContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/holo_blue_light"

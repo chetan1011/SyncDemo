@@ -2,14 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:gravity="center"
+              android:background="@color/colorGray"
               android:orientation="vertical">
 
-    <ImageView
+    <include
+        android:id="@+id/fragment_item_header"
+        layout="@layout/header_back"
+        />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_item_rvItemList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"
-        android:src="@drawable/bg_splash"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

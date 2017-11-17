@@ -11,4 +11,5 @@ public class Constants {
     public static final long MAX_CLICK_INTERVAL = 1000;
 
 
+
 }

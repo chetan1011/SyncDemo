@@ -1,14 +1,18 @@
 package com.indianic.activity;
 
 
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
 
-import com.indianic.fragment.HomeFragment;
 import com.indianic.R;
+import com.indianic.fragment.HomeFragment;
 
+/**
+ * Sample Home activity with Navigation menu.
+ */
 public class HomeActivity extends BaseActivity implements DrawerLayout.DrawerListener {
 
     /**
@@ -23,26 +27,26 @@ public class HomeActivity extends BaseActivity implements DrawerLayout.DrawerLis
 
     @Override
     protected void initializeComponents() {
-        replaceFragment(R.id.activity_home_fl_container, getFragmentManager(), new HomeFragment(), false, false);
+        replaceFragment(R.id.activity_home_flContainer, getFragmentManager(), new HomeFragment(), false, false);
 
-        drawerLayout = findViewById(R.id.activity_home_drawer_layout);
+        drawerLayout = findViewById(R.id.activity_home_drawerLayout);
         drawerLayout.addDrawerListener(this);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
     }
 
     @Override
-    public void onDrawerSlide(View drawerView, float slideOffset) {
+    public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
 
     }
 
     @Override
-    public void onDrawerOpened(View drawerView) {
+    public void onDrawerOpened(@NonNull View drawerView) {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);// Un Lock the drawer to allow User to swipe to close
     }
 
     @Override
-    public void onDrawerClosed(View drawerView) {
+    public void onDrawerClosed(@NonNull View drawerView) {
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);// Lock the drawer to disallow User to swipe to open
     }
 

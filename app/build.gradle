@@ -4,6 +4,7 @@ def config = rootProject.ext
 android {
     compileSdkVersion config.compileSdkVersion
     buildToolsVersion config.buildToolsVersion
+
     defaultConfig {
         applicationId "com.indianic"
         minSdkVersion config.minSdkVersion
@@ -14,19 +15,27 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '26.0.2'
+    lintOptions {
+        // In general we want to check for problems. Any time, all the time.
+        checkReleaseBuilds true
+        // And fail the build if we have errors
+        abortOnError true
+
+        // Level depends on the type AccountModel the job
+        /// Fail the build if buildGreenhouseRelease target is called and we have missing translations!
+        project.ext.isRelease ? error("MissingTranslation") : warning("MissingTranslation")
+        // Error level things
+        /// Hardcoded text should not exist or should have case by case exceptions
+        error "HardcodedText"
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
 
     compile "com.android.support:support-v4:$config.supportLibraryVersion"
     compile "com.android.support:support-v13:$config.supportLibraryVersion"
@@ -35,9 +44,12 @@ dependencies {
     compile "com.android.support:cardview-v7:$config.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$config.supportLibraryVersion"
 
-    compile "com.squareup.okhttp3:okhttp:$config.okhttp3"
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.github.bumptech.glide:okhttp3-integration:1.5.0@aar'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
+    compile 'com.github.bumptech.glide:glide:4.3.0'
+//    compile 'com.github.bumptech.glide:okhttp3-integration:1.5.0@aar'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+//    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0' // interceptor for printing logs of request and response
 
     compile "com.intuit.sdp:sdp-android:$config.sdp"
     compile "com.intuit.ssp:ssp-android:$config.sdp"

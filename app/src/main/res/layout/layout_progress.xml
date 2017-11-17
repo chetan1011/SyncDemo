@@ -5,10 +5,10 @@
     android:orientation="vertical">
 
     <ProgressBar
-        android:id="@+id/layout_pb_progress"
+        android:id="@+id/layout_pbProgress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/dimen_10dp"
         android:indeterminate="true" />
 
 </LinearLayout>

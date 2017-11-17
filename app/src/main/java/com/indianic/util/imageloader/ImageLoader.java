@@ -3,16 +3,17 @@ package com.indianic.util.imageloader;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.graphics.drawable.Drawable;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.indianic.R;
-
-import java.io.File;
+import com.indianic.customview.CircleImageView;
 
 /**
  * Image loader class which will use Glide to load images.
@@ -20,54 +21,50 @@ import java.io.File;
 public class ImageLoader {
 
 
+    /**
+     * Loads the image from url into ImageView.
+     */
     public static void loadImage(final Context context, final ImageView imageView, final String imageUrl, int placeHolderRes) {
-        if (placeHolderRes != R.drawable.placeholder_l_banner) {
-            placeHolderRes = R.drawable.placeholder_l_banner;
-        }
 
-        Glide.with(context)
-                .load(imageUrl)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .placeholder(placeHolderRes)
-                .dontAnimate()
-                .dontTransform()
-                .into(imageView);
+        Glide.with(context).asBitmap().load(imageUrl).apply(new RequestOptions().placeholder(placeHolderRes).error(placeHolderRes)).into(imageView);
     }
 
+    /**
+     * Loads the image resource into ImageView.
+     */
     public static void loadImage(final Context context, final ImageView imageView, final int resource, int placeHolderRes) {
-        Glide.with(context)
-                .load(resource)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .placeholder(placeHolderRes)
-                .dontAnimate()
-                .dontTransform()
-                .into(imageView);
+        Glide.with(context).asBitmap().load(resource).apply(new RequestOptions().placeholder(placeHolderRes).error(placeHolderRes)).into(imageView);
     }
 
-    public static void loadRoundedImage(final Context context, final ImageView imageView, final String imageUrl, int placeHolderRes) {
+    /**
+     * Set rounded image view
+     * <p>
+     * If want to do something after setting the image so don't use this generalized method. Use it at same place at your own.
+     * </p>
+     *
+     * @param uri       String image Uri
+     * @param imageView imageView into set image
+     */
 
-        Glide.with(context)
-                .load(imageUrl)
-                .asBitmap()
-                .dontAnimate()
-                .dontTransform()
-                .placeholder(placeHolderRes).centerCrop().into(new BitmapImageViewTarget(imageView) {
+    public static void getGlideRounded(final Context context, final String uri, final CircleImageView imageView) {
+        Glide.with(context).asBitmap().load(uri).into(new SimpleTarget<Bitmap>() {
             @Override
-            protected void setResource(Bitmap resource) {
-                final RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                circularBitmapDrawable.setCircular(true);
-                imageView.setImageDrawable(circularBitmapDrawable);
+            public void onResourceReady(Bitmap bitmap, Transition<? super Bitmap> transition) {
+                imageView.setImageBitmap(bitmap);
+            }
+
+            @Override
+            public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                //                mImageView.setImageDrawable(VectorDrawableCompat.create(getResources(), R.drawable.img_placeholder, null));
+                super.onLoadFailed(errorDrawable);
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.placeholder_banner));
+            }
+
+            @Override
+            public void onLoadStarted(@Nullable Drawable placeholder) {
+                super.onLoadStarted(placeholder);
+                imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.placeholder_banner));
             }
         });
-    }
-
-    public static void loadImage(final Context context, final ImageView imageView, final File file, int placeHolderRes) {
-        Glide.with(context)
-                .load(file)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .placeholder(placeHolderRes)
-                .dontAnimate()
-                .dontTransform()
-                .into(imageView);
     }
 }

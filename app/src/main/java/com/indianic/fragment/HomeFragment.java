@@ -4,17 +4,32 @@ package com.indianic.fragment;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.indianic.R;
 import com.indianic.adapter.HomeBannerPagerAdapter;
+import com.indianic.adapter.ItemsAdapter;
 import com.indianic.model.BannerModel;
 import com.indianic.model.HomeDataModel;
+import com.indianic.util.NetworkUtils;
 import com.indianic.util.Utils;
+import com.indianic.webservice.retrofit.WSUtils;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter.OnItemClick {
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+/**
+ * Sample Fragment for reference purpose only.
+ */
+public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter.OnItemClickListener {
 
     public static final int DELAY = 5000;// Milliseconds delay to swipe banner view pager automatically.
     private ViewPager vpBanner;//Banner images view pager
@@ -22,9 +37,10 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
     private HomeDataModel homeDataModel;//Model containing all the Home screen Data.
     private TabLayout tblBannerIndicator;//Banner images pager page indicator
 
-    private HomeBannerPagerAdapter bannerAdapter;//Banner images page adapter
 
-    private Handler bannerHandler;// Handler managing the banner pager auto swipe.
+    private HomeBannerPagerAdapter bannerAdapter;//Banner images pageradapter
+
+    private Handler bannerHandler;// Handler, managing the banner pager auto swipe.
     private int currentBanner;//Represents the current visible banner position.
 
 
@@ -35,9 +51,8 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
 
     @Override
     protected void initializeComponent(View view) {
-
-        vpBanner = view.findViewById(R.id.fragment_home_vp_banner);
-        tblBannerIndicator = view.findViewById(R.id.fragment_home_tbl_page_indicator);
+        vpBanner = view.findViewById(R.id.fragment_home_vpBanner);
+        tblBannerIndicator = view.findViewById(R.id.fragment_home_tblPageIndicator);
         tblBannerIndicator.setupWithViewPager(vpBanner);
 
         setDummyData();
@@ -58,7 +73,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
             vpBanner.setAdapter(bannerAdapter);
             tblBannerIndicator.setVisibility(View.VISIBLE);
 
-            Utils.getInstance().setViewHeight(getActivity(), vpBanner);
+            setBannerHeight();
 
             vpBanner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
@@ -85,16 +100,17 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
                 bannerHandler = new Handler();
                 startAutoSwipeBanner();
             }
-//            setToolbarAlpha(0);
-
-//            svContent.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-//                @Override
-//                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-//
-//                    setToolbarAlpha(scrollY);
-//                }
-//            });
         }
+    }
+
+    private void setBannerHeight() {
+        final ViewGroup.LayoutParams params = vpBanner.getLayoutParams();
+
+        final int deviceWidth = Utils.getDeviceMetrics(getActivity()).widthPixels;
+        final float BANNER_ASPECT_RATIO = 16f / 9; //16:9 aspect ratio
+        params.height = (int) (deviceWidth / BANNER_ASPECT_RATIO); //left, top, right, bottom
+
+        vpBanner.setLayoutParams(params);
     }
 
     /**
@@ -113,7 +129,7 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
 
     @Override
     public void onClickBanner(int position) {
-
+        addFragment(R.id.activity_home_flContainer, this, new ItemFragment(), true, false);
     }
 
     @Override
@@ -154,8 +170,27 @@ public class HomeFragment extends BaseFragment implements HomeBannerPagerAdapter
         homeDataModel = new HomeDataModel();
         final ArrayList<BannerModel> bannerArrayList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            bannerArrayList.add(new BannerModel());
+            bannerArrayList.add(new BannerModel("Banner Item " + (i + 1)));
         }
         homeDataModel.setBannerList(bannerArrayList);
+    }
+
+    /**
+     * Sample method to call the webservice using Retrofit.
+     */
+    private void callLoginWS(final String email, final String password) {
+
+        WSUtils.getClient().login(email, password).enqueue(new Callback<ResponseBody>() {
+
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                Utils.showSnackBar(rvProducts, getString(R.string.alert_something_wrong), true, getActivity());
+            }
+        });
     }
 }

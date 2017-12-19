@@ -17,35 +17,18 @@
             android:layout_alignParentStart="true"
             android:contentDescription="@null"
             android:src="@drawable/ic_nav_slider"
-            />
+            android:visibility="invisible" />
 
-        <ImageButton
-            android:id="@+id/header_ibCart"
-            style="@style/StyleImageButton.Header"
-            android:layout_alignParentEnd="true"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_nav_cart"
-            />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/header_ibMenu"
-            android:layout_toStartOf="@+id/header_ibCart"
             android:text="@string/title_home"
             android:textColor="@android:color/white"
             android:textSize="@dimen/font_18sp"/>
     </RelativeLayout>
-
-
-    <EditText
-        android:id="@+id/header_tvSearch"
-        style="@style/StyleEditText.HeaderSearch"
-        android:layout_marginBottom="@dimen/dimen_10dp"
-        android:layout_marginEnd="@dimen/dimen_10dp"
-        android:layout_marginStart="@dimen/dimen_10dp"
-        android:hint="@string/search_message"/>
 
 
 </LinearLayout>

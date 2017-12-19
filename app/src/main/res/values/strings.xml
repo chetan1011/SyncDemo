@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Common Structure</string>
+    <string name="app_name">Data Sync</string>
 
     <!--Common Strings-->
     <string name="ok">OK</string>
@@ -30,4 +30,11 @@
     <string name="title_share_intent">Choose your option.</string>
     <string name="title_home">Home</string>
     <string name="title_item_list">Item List</string>
+    <string name="lbl_no_user">No user.</string>
+
+    <string name="something_went_wrong_msg">Something went wrong please try after sometime.</string>
+    <string name="hine_enter_name">Enter name</string>
+    <string name="hint_enter_description">Enter description</string>
+    <string name="lbl_submit">Submit</string>
+    <string name="title_add_user">Add user</string>
 </resources>

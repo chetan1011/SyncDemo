@@ -16,6 +16,7 @@
 
 
     <TextView
+        android:id="@+id/header_tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_item_list"
